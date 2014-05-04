@@ -121,14 +121,16 @@ topos = { 'mytopo': ( lambda: MyTopo() ) }
 
 
 def perfTest():
+
 		topo = MyTopo()
-		net = Mininet(topo =topo , link=TCLink)
-	
-		net.start()
+		net = Mininet(topo =topo , link=TCLink ,controller=None)
 		net.addController('floodlight',controller=RemoteController,ip='127.0.0.1')
-	
+		net.start()
+
 		print"Dumping host connection";
 		dumpNodeConnections(net.hosts);
+
+
 		print "Test network connectivity"
 		net.pingAll()
 	
